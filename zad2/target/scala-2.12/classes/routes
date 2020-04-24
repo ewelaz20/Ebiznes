@@ -1,0 +1,69 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+GET           /                                   controllers.HomeController.index
+
+
+GET           /userLogin                          controllers.AuthController.userLogin()
+POST          /userLoginHandle                    controllers.AuthController.userLoginHandle()
+GET           /userRegister                       controllers.AuthController.userRegister()
+POST          /userRegisterHandle                 controllers.AuthController.userRegisterHandle()
+
+
+GET           /userSettings                       controllers.SettingsController.userSettings()
+POST          /userSettingsHandle                 controllers.SettingsController.userSettings()
+DELETE        /userLogout                         controllers.SettingsController.userLogout()
+DELETE        /deleteUser/:userId                 controllers.SettingsController.deleteUser(userId:Long)
+
+
+GET           /products                           controllers.ProductsController.getProducts
+GET           /product/:productId                 controllers.ProductsController.getProduct(productId:Long)
+GET           /addproduct                         controllers.ProductsController.addProduct()
+POST           /addproducthandle                   controllers.ProductsController.addProductHandle()
+GET           /updateproduct/:productId           controllers.ProductsController.updateProduct(productId: Long)
+PUT           /updateproducthandle                controllers.ProductsController.updateProductHandle()
+DELETE        /delete/:productId                  controllers.ProductsController.deleteProduct(productId:Long)
+
+
+GET           /basket                             controllers.BasketController.basketForm()
+POST          /addToBasket/:productId             controllers.BasketController.addToBasket(productId:Long)
+DELETE        /deleteFromBasket/:productId        controllers.BasketController.deleteFromBasket(productId:Long)
+
+
+GET           /newsletterForm                     controllers.NewsletterController.newsletterForm()
+POST          /addToNewsletter/:userId            controllers.NewsletterController.addToNewsletter(userId:Long)
+
+
+POST          /notify/:productId                  controllers.AvailabilityController.notifyAvailability(productId:Long)
+
+
+GET           /categories                         controllers.CategoryController.listOfCategories()
+POST          /addCategory/:catName               controllers.CategoryController.addCategory(catName:String)
+DELETE        /deleteCategory/:catName            controllers.CategoryController.deleteCategory(catName:String)
+
+
+GET           /contact                            controllers.ContactController.getContactData()
+POST          /contact/publish                    controllers.ContactController.sendContactEmail()
+
+
+GET           /fav                                controllers.FavouriteController.listOfFav()
+POST          /favAdd/:productId                  controllers.FavouriteController.addFav(productId:Long)
+DELETE        /favDelete/:productId               controllers.FavouriteController.deleteFav(productId:Long)
+
+
+GET           /paymentList                        controllers.PaymentController.listOfPayments()
+GET           /payment                            controllers.PaymentController.payment()
+POST          /paymentHandle/:paymentId           controllers.PaymentController.paymentHandle(paymentId:Long)
+DELETE        /paymentDelete/:paymentId           controllers.PaymentController.deletePayment(paymentId:Long)
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file                       controllers.Assets.versioned(path="/public", file: Asset)
+
+
+
+
