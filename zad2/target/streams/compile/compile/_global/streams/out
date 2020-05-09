@@ -1,7 +1,0 @@
-[error] E:\Studia\2 sem zaocz\ebiznes\zad2\conf\routes:52:1: value listOfCategories is not a member of controllers.FavouriteController
-[error] GET           /fav                                controllers.FavouriteController.listOfCategories()
-[error] E:\Studia\2 sem zaocz\ebiznes\zad2\conf\routes:53:1: value addCategory is not a member of controllers.FavouriteController
-[error] POST          /favAdd/:productId                  controllers.FavouriteController.addCategory(productId:Long)
-[error] E:\Studia\2 sem zaocz\ebiznes\zad2\conf\routes:54:1: value deleteCategory is not a member of controllers.FavouriteController
-[error] DELETE        /favDelete/:productId               controllers.FavouriteController.deleteCategory(productId:Long)
-[error] three errors found

@@ -1,5 +1,0 @@
-[debug] Copy resource mappings: 
-[debug] 	(E:\Studia\2 sem zaocz\ebiznes\zad2\conf\application.conf,E:\Studia\2 sem zaocz\ebiznes\zad2\target\scala-2.12\classes\application.conf)
-[debug] 	(E:\Studia\2 sem zaocz\ebiznes\zad2\conf\logback.xml,E:\Studia\2 sem zaocz\ebiznes\zad2\target\scala-2.12\classes\logback.xml)
-[debug] 	(E:\Studia\2 sem zaocz\ebiznes\zad2\conf\messages,E:\Studia\2 sem zaocz\ebiznes\zad2\target\scala-2.12\classes\messages)
-[debug] 	(E:\Studia\2 sem zaocz\ebiznes\zad2\conf\routes,E:\Studia\2 sem zaocz\ebiznes\zad2\target\scala-2.12\classes\routes)
