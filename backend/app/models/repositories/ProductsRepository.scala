@@ -22,13 +22,18 @@ class ProductsRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
 
     /** The name column */
     def name = column[String]("name")
+    def reference = column[String]("reference")
 
     /** The age column */
     def description = column[String]("description")
 
+    def quantity = column[Int]("quantity")
+
     def price = column[Double]("price")
 
     def status = column[String]("status")
+
+    def image = column[String]("image")
 
     def category = column[Int]("category")
 
@@ -43,7 +48,7 @@ class ProductsRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
       * In this case, we are simply passing the id, name and page parameters to the Person case classes
       * apply and unapply methods.
       */
-    def * = (id, name, description, price, status,category) <> ((Product.apply _).tupled, Product.unapply)
+    def * = (id, name, reference, description,quantity, price, status, image, category) <> ((Product.apply _).tupled, Product.unapply)
 
   }
 
@@ -67,6 +72,7 @@ class ProductsRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
   def addProduct(newProduct: Product): Future[Product] = db.run {
     products returning products.map(_.id) into ((newProduct, id) => newProduct.copy(id = id)) += (newProduct)
   }
+
 
 
   def getByCategory(category_id: Int): Future[Seq[Product]] = db.run {

@@ -1,0 +1,20 @@
+@import helper._
+@import views.html.helper.{form, inputText}
+@import models.Product
+@import controllers.CreateProductForm
+
+@(product: Form[CreateSizeForm], sizes: Seq[Size])(implicit request: MessagesRequestHeader, flash: Flash)
+@flash.get("success").getOrElse("")
+
+@main("Add product") {
+    <h1>Add size</h1>
+
+    @form(action = routes.ProductsController.saveAddedSize()) {
+        @helper.CSRF.formField
+        @inputText(product("product"))
+        @inputText(product("value"))
+
+
+        <input type="submit" value="Submit">
+    }
+}

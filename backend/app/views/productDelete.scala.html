@@ -1,0 +1,18 @@
+@import helper._
+@import views.html.helper.{form, inputText}
+@import models.Product
+@import controllers.DeleteProductForm
+
+@(product: Form[DeleteProductForm], products: Seq[Product])(implicit request: MessagesRequestHeader, flash: Flash)
+@flash.get("success").getOrElse("")
+
+@main("Delete product") {
+    <h1>Delete product</h1>
+
+    @form(action = routes.ProductsController.deleteHandle()) {
+        @helper.CSRF.formField
+        @inputText(product("id"))
+
+        <input type="submit" value="Delete">
+    }
+}

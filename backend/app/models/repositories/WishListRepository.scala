@@ -48,7 +48,7 @@ class WishListRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
     favourites += favourite
   }
 
-  def deleteFavourite(favourite: Favourite): Future[Unit] = db.run {
-    favourites.filter(_.product === favourite.product).delete.map(_ => ())
+  def deleteFavourite(userId: Long, productId: Long): Future[Unit] = db.run {
+    favourites.filter(fav => fav.user === userId && fav.product === productId).delete.map(_ => ())
   }
 }

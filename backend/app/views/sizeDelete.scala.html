@@ -1,0 +1,20 @@
+@import helper._
+@import views.html.helper.{form, inputText}
+@import models.Product
+@import controllers.CreateProductForm
+
+@(product: Form[DeleteSizeForm], sizes: Seq[Size])(implicit request: MessagesRequestHeader, flash: Flash)
+@flash.get("success").getOrElse("")
+
+@main("Add product") {
+    <h1>Delete size</h1>
+
+    @form(action = routes.ProductsController.deleteSizeHandle()) {
+        @helper.CSRF.formField
+        @inputText(product("product"))
+        @inputRadioGroup(product("value"),options=sizes.map(size => size.value -> size.value))
+
+
+        <input type="submit" value="Delete">
+    }
+}

@@ -8,7 +8,7 @@ import play.api.mvc._
 @Singleton
 class PaymentController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
 
-  //add product
+
   def listOfPayments() = Action { implicit request: Request[AnyContent] =>
     Ok("ok")
   }

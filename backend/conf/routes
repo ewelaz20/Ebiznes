@@ -18,15 +18,54 @@ POST          /userSettingsHandle                   controllers.SettingsControll
 DELETE        /userLogout                           controllers.SettingsController.userLogout()
 DELETE        /deleteUser/:userId                   controllers.SettingsController.deleteUser(userId:Long)
 
+POST          /user                                 controllers.UserAccountController.addUserInformation()
+
 
 GET           /products                             controllers.ProductsController.getProducts
 GET           /product/:productId                   controllers.ProductsController.getProduct(productId:Long)
 GET           /products/category/:categoryId        controllers.ProductsController.getProductsByCategory(categoryId:Int)
-GET           /addproduct                           controllers.ProductsController.addProduct()
+
+GET           /addproduct                           controllers.ProductsController.addProductForm()
+POST          /added-product                        controllers.ProductsController.saveAddedProduct
+GET           /update-product/:id                   controllers.ProductsController.updateProductForm(id: Long)
+POST          /updated-product                      controllers.ProductsController.saveUpdatedProduct
+
+GET           /deleteproduct/:id                    controllers.ProductsController.deleteForm(id: Long)
+POST          /deleteproduct                        controllers.ProductsController.deleteHandle()
+
+GET           /addcategory                          controllers.CategoryController.addCategoryForm()
+POST          /added-category                       controllers.CategoryController.saveAddedCategory()
+
+GET           /update-category/:id                  controllers.CategoryController.updateCategoryForm(id: Int)
+POST          /updated-category                     controllers.CategoryController.saveUpdatedCategory()
+GET           /deletecategory/:id                   controllers.CategoryController.deleteForm(id: Int)
+POST          /deletecategory                       controllers.CategoryController.deleteHandle()
+
+
+GET           /update-about/:id                     controllers.AboutController.updateAboutForm(id: Int)
+POST          /updated-about                        controllers.AboutController.saveUpdatedAbout()
+
+GET           /update-contact/:id                   controllers.ContactController.updateContactForm(id: Int)
+POST          /updated-contact                      controllers.ContactController.saveUpdateContact()
+
+GET           /addsize                              controllers.ProductsController.addSizeForm()
+POST          /added-size                           controllers.ProductsController.saveAddedSize()
+
+GET           /deletesize/:product                  controllers.ProductsController.deleteSizeForm(product: Int)
+POST          /deleted-size                         controllers.ProductsController.deleteSizeHandle()
+
+
 POST          /addproducthandle                     controllers.ProductsController.addProductHandle()
 GET           /updateproduct/:productId             controllers.ProductsController.updateProduct(productId: Long)
 PUT           /updateproducthandle                  controllers.ProductsController.updateProductHandle()
 DELETE        /delete/:productId                    controllers.ProductsController.deleteProduct(productId:Long)
+GET           /products/sizes/:productId            controllers.ProductsController.getSizeForProduct(productId:Long)
+
+
+
+
+
+
 
 
 GET           /basket                               controllers.BasketController.basketForm()
@@ -35,10 +74,10 @@ DELETE        /deleteFromBasket/:productId          controllers.BasketController
 
 
 GET           /newsletterForm                       controllers.NewsletterController.newsletterForm()
-POST          /addToNewsletter/:userId              controllers.NewsletterController.addToNewsletter(userId:Long)
+POST          /addToNewsletter/:mail                controllers.NewsletterController.addToNewsletter(mail:String)
 
 
-POST          /notify/:productId                    controllers.AvailabilityController.notifyAvailability(productId:Long)
+POST          /notify/:mail/:productId              controllers.AvailabilityController.notifyAvailability(mail:String, productId:Long)
 
 
 GET           /categories                           controllers.CategoryController.listOfCategories()
@@ -46,13 +85,16 @@ POST          /addCategory/:catName                 controllers.CategoryControll
 DELETE        /deleteCategory/:categoryId           controllers.CategoryController.deleteCategory(categoryId:Int)
 
 
-GET           /contact                              controllers.ContactController.getContactData()
+GET           /contact                              controllers.ContactController.getContact()
 POST          /contact/publish                      controllers.ContactController.sendContactEmail()
 
 
+GET           /about                                controllers.AboutController.getAbout()
+
+
 GET           /fav/:userId                          controllers.FavouriteController.getWishlistForUser(userId:Long)
-POST          /kurwa                               controllers.FavouriteController.addFav()
-DELETE        /favDelete                            controllers.FavouriteController.deleteFav()
+POST          /fav/:userId/:productId               controllers.FavouriteController.addFav(userId:Long,productId:Long)
+DELETE        /fav/:userId/:productId               controllers.FavouriteController.deleteFav(userId:Long,productId:Long)
 
 
 GET           /paymentList                          controllers.PaymentController.listOfPayments()

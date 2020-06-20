@@ -1,0 +1,26 @@
+@import helper._
+@import views.html.helper.{form, inputText}
+@import models.Product
+@import controllers.UpdateProductForm
+
+@(product: Form[UpdateProductForm], products: Seq[Product])(implicit request: MessagesRequestHeader, flash: Flash)
+@flash.get("success").getOrElse("")
+
+@main("Update product") {
+    <h1>Update product</h1>
+
+    @form(action = routes.ProductsController.saveAddedProduct()) {
+        @helper.CSRF.formField
+        @inputText(product("id"))
+        @inputText(product("name"))
+        @inputText(product("reference"))
+        @inputText(product("description"))
+        @inputText(product("quantity"))
+        @inputText(product("price"))
+        @inputText(product("status"))
+        @inputText(product("image"))
+        @inputText(product("category"))
+
+        <input type="submit" value="Update">
+    }
+}

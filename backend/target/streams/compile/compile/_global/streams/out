@@ -1,5 +1,0 @@
-[error] C:\e-ewelina\Ebiznes\zad2\conf\routes:24:1: type mismatch;
-[error]  found   : Long
-[error]  required: Int
-[error] GET           /product/category/:categoryId        controllers.ProductsController.getProductsByCategory(categoryId:Long)
-[error] one error found

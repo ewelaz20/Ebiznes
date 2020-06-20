@@ -1,0 +1,20 @@
+@import helper._
+@import views.html.helper.{form, inputText}
+
+
+@(product: Form[ContactForm], categories: Seq[Contact])(implicit request: MessagesRequestHeader, flash: Flash)
+@flash.get("success").getOrElse("")
+
+@main("Update contact") {
+    <h1>Update about</h1>
+
+    @form(action = routes.ContactController.saveUpdateContact()) {
+        @helper.CSRF.formField
+        @inputText(product("id"))
+        @inputText(product("address"))
+        @inputText(product("phone"))
+        @inputText(product("email"))
+
+        <input type="submit" value="Update">
+    }
+}

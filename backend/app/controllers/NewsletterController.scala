@@ -1,20 +1,21 @@
 package controllers
 
 import javax.inject._
-import play.api._
+import models.repositories.NewsletterRepository
 import play.api.mvc._
+
+import scala.concurrent.ExecutionContext
 
 
 @Singleton
-class NewsletterController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
+class NewsletterController @Inject()(val controllerComponents: ControllerComponents, val newletterRepository: NewsletterRepository)(implicit ec: ExecutionContext) extends BaseController {
 
 
-  // add to newsletter
-  def addToNewsletter(userId:Long) = Action { implicit request: Request[AnyContent] =>
-    Ok("ok")
+  def addToNewsletter(mail: String) = Action.async { implicit request: Request[AnyContent] =>
+    newletterRepository.add(mail).map(_ => Ok)
   }
 
   def newsletterForm() = Action { implicit request: Request[AnyContent] =>
-    Ok("ok")
+    Ok
   }
 }
