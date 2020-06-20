@@ -4,17 +4,20 @@ import './App.css';
 import './css/search.css';
 
 
-
 import Newsletter from "./components/newsletter";
 import Footer from "./components/Footer"
+import {useParams} from "react-router-dom"
 import Header from "./components/Header"
-import Wishlist from "./components/wishlist"
+import ProductPage from "./components/DetailPage"
 
-function WishlistPage() {
-  return (
+function SinglePage() {
+    let  {id} = useParams();
+    return (
+
     <div className="App">
       <Header></Header>
-    <Wishlist/>
+   
+    <ProductPage id={id}/>
 
       <Newsletter></Newsletter>
       <Footer></Footer>
@@ -23,4 +26,4 @@ function WishlistPage() {
   );
 }
 
-export default WishlistPage;
+export default SinglePage;

@@ -521,7 +521,6 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     }
     
     nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after{
-        font-family: 'FontAwesome';
         content: "\f0d7";
         margin-left: 5px;
         margin-top: 2px;
@@ -540,9 +539,8 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
         width: 200px;
         background: #000000;
 		border: none;
-		padding: 30px 0;
     }
-    
+
     nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li a:hover,
     nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li a:hover{
         background-color: transparent;
@@ -566,14 +564,12 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     }
     
     nav.navbar.bootsnav li.dropdown ul.dropdown-menu li.dropdown > a.dropdown-toggle:before{
-        font-family: 'FontAwesome';
         float: right;
         content: "\f105";
         margin-top: 0;
     }
     
     nav.navbar.bootsnav ul.navbar-right li.dropdown ul.dropdown-menu li.dropdown > a.dropdown-toggle:before{
-        font-family: 'FontAwesome';
         float: left;
         content: "\f104";
         margin-top: 0;
@@ -891,7 +887,6 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
         left: 100%;
         top: 0;
         position: relative !important;
-        left: 0 !important;
         width: 100% !important;
         height: auto !important;
         background-color: transparent;
@@ -916,7 +911,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
         float: none;
         margin-bottom: 0;
     }
-    
+
     nav.bootsnav.navbar-sidebar ul.nav li.dropdown ul.dropdown-menu li a{
         padding:  5px 15px;
         color: #6f6f6f;
@@ -929,7 +924,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     }
     
     nav.bootsnav.navbar-sidebar ul.nav li.dropdown ul.dropdown-menu li.dropdown > a:before{
-        font-family: 'FontAwesome';
+
         content: "\f105";
         float: right;
     }
@@ -949,7 +944,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
         margin: 0;
         width: 100%;
     }
-    
+
     nav.bootsnav.navbar-sidebar .dropdown .megamenu-content .col-menu .title{
         padding: 7px 0;
         text-transform: none;
@@ -961,7 +956,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     }
     
     nav.bootsnav.navbar-sidebar .dropdown .megamenu-content .col-menu .title:before{
-        font-family: 'FontAwesome';
+
         content: "\f105";
         float: right;
     }
@@ -1033,7 +1028,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     }
     
     nav.navbar.bootsnav li.dropdown a.dropdown-toggle:before{
-        font-family: 'FontAwesome';
+
         content: "\f105";
         float: right;
         font-size: 16px;
@@ -1139,7 +1134,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     }
     
    nav.navbar.bootsnav .dropdown .megamenu-content .col-menu .title:before{
-        font-family: 'FontAwesome';
+
         content: "\f105";
         float: right;
         font-size: 16px;
@@ -1264,7 +1259,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     }
     
     /* Navbar Sidebar
-    =================================*/ 
+    =================================*/
     nav.navbar.bootsnav.navbar-sidebar .share{
         padding: 30px 15px;
         margin-bottom: 0;
@@ -1318,7 +1313,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     nav.navbar.bootsnav.navbar-mobile .navbar-collapse.in{
         left: 0;
     }
-    
+
     nav.navbar.bootsnav.navbar-mobile ul.nav{
         width: 293px;
         padding-right: 0;
@@ -1448,10 +1443,11 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     nav.navbar.bootsnav.navbar-mobile ul.nav{
         margin-left: -15px;
     }
-    
+
     nav.navbar.bootsnav.navbar-mobile ul.nav{
         border-top: solid 1px #fff;
     }
+
     
     li.close-full-menu{
         padding-top: 15px !important;

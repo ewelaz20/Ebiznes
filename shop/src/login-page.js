@@ -4,15 +4,11 @@ import './App.css';
 import './css/search.css';
 
 
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-
-
 import Newsletter from "./components/newsletter";
-import Footer from "./components/footer"
+import Footer from "./components/Footer"
 import Login from "./components/login"
-import Header from "./components/header"
-import CreateAccount from "./components/create-account"
-import Wishlist from "./components/wishlist"
+import Header from "./components/Header"
+
 
 class LoginPage extends React.Component {
     constructor(props) {

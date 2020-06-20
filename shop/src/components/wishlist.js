@@ -1,14 +1,11 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import '../css/bootstrap.min.css';
 import '../css/style.css';
 import '../css/responsive.css';
 
-
-import img1 from '../images/marynarki/marynarka1.jpg';
-import img2 from '../images/marynarki/marynarka2.jpg';
-import img3 from '../images/spodnie/spodnie1.jpg';
-import {UserContext} from "./user-context";
-import {addToWishlist} from "./wishlist-handler"
+import { UserContext } from "./user-context";
+import { addToWishlist } from "./wishlist-handler"
+import Notify from "./NotifyModal"
 
 export default class Wishlist extends Component {
     static contextType = UserContext;
@@ -16,80 +13,99 @@ export default class Wishlist extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            favourites: [
-                {name: "niebieski żakiet", price: 100, image: img1},
-                {
-                    name: "różowy",
-                    price: 130,
-                    image: img2
-                },
-                {name: "spodnie", price: 89, image: img3}]
+            favourites: []
 
         };
         this.singleWishlistProduct = this.singleWishlistProduct.bind(this);
         this.removeFromWishList = this.removeFromWishList.bind(this);
+        this.stock = this.stock.bind(this);
 
     }
 
     componentDidMount() {
         console.log("USER   " + this.context.user);
-        fetch("http://localhost:9000/fav/"+ this.context.user)
+        fetch("http://localhost:9000/fav/" + this.context.user, { mode: "cors", method: "GET" })
             .then(response => response.json())
-            .then(response => {
-                response.forEach(
-                    product => {
-
-                        if (product["id"] % 3 === 0) {
-                            product["image"] = img2
-                        } else {
-                            product["image"] = img1
-                        }
-                    }
-                )
-                ;
-                return response
-            })
             .then(json =>
-                this.setState({favourites: json})
+                this.setState({ favourites: json })
             )
 
 
     }
 
-    removeFromWishList(name) {
+    removeFromWishList(id) {
         console.log("removing");
         let fav = [...this.state.favourites];
-        this.setState({favourites:fav.filter(item => item.name !== name)})
-    }
-    test(){
-        addToWishlist()
+        this.setState({ favourites: fav.filter(item => item.id !== id) })
+        fetch("http://localhost:9000/fav/" + this.context.user + "/" + id, {
+            method: "DELETE"
+        }).catch(err => console.log(err))
+
     }
 
+    modalOpen() {
+        this.setState({ modal: true });
+    }
+
+    modalClose() {
+        this.setState({
+            modalInputName: "",
+            modal: false
+        });
+    }
+
+    stock(product) {
+        if (product.quantity > 0) {
+            return (
+                <td className="quantity-box">In stock</td>
+            )
+        } else {
+            return (
+
+                <td className="quantity-box">Out of stock</td>
+            )
+        }
+    }
+
+    addToCart(product) {
+        if (product.quantity > 0) {
+            return (<td className="add-pr" onClick={() => this.context.pushToCart(product)}>
+                <a href="" className="btn hvr-hover" >Add to Cart</a>
+            </td>)
+        } else {
+            return (
+                
+                    <td className="add-pr" onClick={e => this.modalOpen(e)}>
+                        <a href=""className="btn hvr-hover" > &nbsp;&nbsp;&nbsp;&nbsp; Notify &nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    </td>
+                   
+                )
+        }
+    }
 
 
     singleWishlistProduct(product) {
-        console.log(this.context.user);
+        console.log(product);
         return (
             <tr>
                 <td className="thumbnail-img">
-                    <a href="#">
-                        <img className="img-fluid" src={product.image} alt=""/>
+                    <a href={"/product/" + product.id}>
+                    <img className="img-fluid" src={product.image} alt="" />
                     </a>
                 </td>
                 <td className="name-pr">
-                    <a href="#">
-                        {product.name}
+                    <a href={"/product/" + product.id}>
+                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; {product.name}
                     </a>
                 </td>
                 <td className="price-pr">
-                    <p>{product.price}</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; {product.price}</p>
                 </td>
-                <td className="quantity-box">In Stock</td>
-                <td className="add-pr">
-                    <a className="btn hvr-hover" href="#">Add to Cart</a>
-                </td>
+                {this.stock(product)}
+                {this.addToCart(product)}
+                <Notify show={this.state.modal} handleClose={e => this.modalClose(e)} id={product.id} name={product.name}></Notify>
                 <td className="remove-pr" >
-                    <a onClick={()=>this.removeFromWishList(product.name)}>
+                    <a onClick={() => this.removeFromWishList(product.id)}>
                         <i className="fas fa-times"></i>
                     </a>
                 </td>
@@ -106,25 +122,25 @@ export default class Wishlist extends Component {
 
                         <div class="col-lg-12">
                             <div class="title-all text-center">
-                                <hr/>
+                                <hr />
                                 <h1>Favourites</h1>
-                                <hr/>
+                                <hr />
 
                             </div>
                             <div class="table-main table-responsive">
                                 <table class="table">
                                     <thead>
-                                    <tr>
-                                        <th>Preview</th>
-                                        <th>Product Name</th>
-                                        <th>Price</th>
-                                        <th>Stock</th>
-                                        <th>Add Item</th>
-                                        <th>Remove</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th></th>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                            <th>Add Item</th>
+                                            <th>Remove</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    {this.state.favourites.map(this.singleWishlistProduct)}
+                                        {this.state.favourites.map(this.singleWishlistProduct)}
                                     </tbody>
                                 </table>
                             </div>

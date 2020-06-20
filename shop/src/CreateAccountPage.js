@@ -2,23 +2,24 @@ import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './css/search.css';
-import './css/custom.css';
 
 
-
+import Newsletter from "./components/newsletter";
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-import Cart from "./components/cart"
+import CreateAccount from "./components/SignUp"
 
-function CartPage() {
+function CreateAccountPage() {
     return (
         <div className="App">
             <Header></Header>
-            <Cart horizontal/>
+            <CreateAccount />
+
+            <Newsletter></Newsletter>
             <Footer></Footer>
 
         </div>
     );
 }
 
-export default CartPage;
+export default CreateAccountPage;

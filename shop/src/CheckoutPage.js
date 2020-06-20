@@ -2,23 +2,21 @@ import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './css/search.css';
-import './css/custom.css';
-
 
 
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-import Cart from "./components/cart"
+import Checkout from "./components/checkout"
 
-function CartPage() {
+function CheckoutPage() {
     return (
         <div className="App">
             <Header></Header>
-            <Cart horizontal/>
+            <Checkout />
             <Footer></Footer>
 
         </div>
     );
 }
 
-export default CartPage;
+export default CheckoutPage;

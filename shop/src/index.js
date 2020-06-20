@@ -1,32 +1,32 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.css";
 import LoginPage from "./login-page";
 import WishlistPage from "./wishlist-page";
-import Checkout from "./checkout-page"
-import CreateAccount from "./create-account"
+import Checkout from "./CheckoutPage"
 import CartP from "./cart-page"
-import SinglePage from "./single-page-missing"
-import ProductList from "./category"
-import CreateAccountPage from "./create-account"
-import CategoryPage from "./category"
-import {UserContext, user} from "./components/user-context";
+import SinglePage from "./SinglePage"
+import CreateAccountPage from "./CreateAccountPage"
+import CategoryPage from "./CategoryPage"
+import { UserContext } from "./components/user-context";
 import FrontPage from "./FrontPage.js"
+import User from "./user-page"
 
 import * as serviceWorker from "./serviceWorker";
+import Redirect from "react-router-dom/es/Redirect";
+import 'font-awesome/css/font-awesome.css';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             user: localStorage.getItem("user"),
-            setUser:this.setUser
+            setUser: this.setUser,
+            cart: this.cart(),
+            pushToCart: this.pushToCart,
+            removeFromCart: this.removeFromCart,
+            logout: this.logout
         };
 
 
@@ -34,33 +34,72 @@ class App extends React.Component {
 
     setUser = (usr) => {
         console.log("set function launched");
-        localStorage.setItem("user",usr);
+        localStorage.setItem("user", usr);
         this.setState(({
             user: usr
         }));
     };
 
+    logout = () => {
+        localStorage.clear();
+        return (<Redirect to='/main' />)
+
+    };
+
+    cart() {
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        return cart !== null ? cart : []
+    }
+
+   
+
+    pushToCart = (product) => {
+        console.log("got");
+        console.log(product);
+        let index = this.state.cart.findIndex(val => val.id === product.id);
+        if (index === -1) {
+            this.setState(({
+                cart: [...this.state.cart, product]
+            }), () => {
+                let cart = [...this.state.cart];
+                cart[index] = product;
+                localStorage.setItem("cart", JSON.stringify(this.state.cart))
+
+            });
+        }
+
+    };
+    removeFromCart = (product) => {
+        this.setState(({
+            cart: [...this.state.cart].filter(val => val.id !== product.id)
+        }), () =>
+                localStorage.setItem("cart", JSON.stringify(this.state.cart)));
+    };
+
     render() {
         return (
             <UserContext.Provider value={this.state}>
-            <Router>
-                <Switch>
-                    <Route exact path="/main" component={FrontPage}/>
+                <Router>
+                    <Switch>
+                        <Route exact path="/main" component={FrontPage} />
 
-                    <Route path="/categories/:id" component={CategoryPage}/>
-                    <Route path="/product/:id" component={SinglePage}/>
-                    <Route path="/register" component={CreateAccountPage}/>
-                    <Route path="/cart" component={CartP}/>
-                    <Route path="/wishList">
-                        <WishlistPage/>
-                    </Route>
-                    <Route path="/">
+                        <Route path="/categories/:id" component={CategoryPage} />
+                        <Route path="/product/:id" component={SinglePage} />
+                        <Route path="/register" component={CreateAccountPage} />
+                        <Route path="/cart" component={CartP} />
+                        <Route path="/checkout" component={Checkout} />
+                        <Route path="/user" component={User} />
+                        <Route path="/wishList">
+                            <WishlistPage />
+                        </Route>
+                        <Route path="/login" component={LoginPage} />
+                       
+                        <Route path="/">
 
-                        <LoginPage />
 
-                    </Route>
-                </Switch>
-            </Router>
+                        </Route>
+                    </Switch>
+                </Router>
             </UserContext.Provider>
         );
     }
@@ -68,7 +107,7 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-    <App/>
+    <App />
     ,
     document.getElementById("root")
 );
