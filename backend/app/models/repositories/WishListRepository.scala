@@ -27,11 +27,11 @@ class WishListRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
   private class Favourites(tag: Tag) extends Table[Favourite](tag, "favourites") {
     def user = column[Long]("user")
 
-    def user_fk = foreignKey("user_fk", product, products)(_.id)
+    def userFk = foreignKey("user_fk", product, products)(_.id)
 
     def product = column[Long]("product")
 
-    def product_fk = foreignKey("product_fk", product, products)(_.id)
+    def productFk = foreignKey("product_fk", product, products)(_.id)
 
     def * = (user, product) <> ((Favourite.apply _).tupled, Favourite.unapply)
   }

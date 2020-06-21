@@ -37,7 +37,7 @@ class ProductsRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
 
     def category = column[Int]("category")
 
-    def category_fk = foreignKey("cat_fk", category, cat)(_.id)
+    def categoryFk = foreignKey("cat_fk", category, cat)(_.id)
 
 
     /**
@@ -75,8 +75,8 @@ class ProductsRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
 
 
 
-  def getByCategory(category_id: Int): Future[Seq[Product]] = db.run {
-    products.filter(_.category === category_id).result
+  def getByCategory(categoryId: Int): Future[Seq[Product]] = db.run {
+    products.filter(_.category === categoryId).result
   }
 
   def getById(id: Long): Future[Product] = db.run {

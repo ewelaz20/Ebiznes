@@ -35,7 +35,7 @@ class UserAccountRepository @Inject()(val dbConfigProvider: DatabaseConfigProvid
     def email = column[String]("email")
 
 
-    def user_fk = foreignKey("user_fk", user, users)(_.id)
+    def userFk = foreignKey("user_fk", user, users)(_.id)
 
     def * = (user, firstName, lastName, address, zip, phone, email) <> ((UserAccount.apply _).tupled, UserAccount.unapply)
   }

@@ -25,7 +25,7 @@ class NotifyRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider, v
 
     def product = column[Long]("product")
 
-    def product_fk = foreignKey("product_fk", product, products)(_.id)
+    def productFk = foreignKey("product_fk", product, products)(_.id)
 
     def * = (id, mail, product) <> ((Notify.apply _).tupled, Notify.unapply)
   }

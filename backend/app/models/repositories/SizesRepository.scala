@@ -22,7 +22,7 @@ class SizesRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider, va
 
     def value = column[String]("value")
 
-    def product_fk = foreignKey("product_fk", product, products)(_.id)
+    def productFk = foreignKey("product_fk", product, products)(_.id)
 
 
     def * = (product, value) <> ((Size.apply _).tupled, Size.unapply)
