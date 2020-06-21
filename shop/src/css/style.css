@@ -2193,11 +2193,10 @@
 }
  .bottom-box .account-box {
      min-height: 205px;
-}
- .account-box {
      border: 2px solid #000000;
      margin-top: 15px;
 }
+
  .my-account-page a{
      color: #000000;
 }
@@ -2207,8 +2206,7 @@
  .service-icon i{
      font-size: 34px;
 }
- .my-account-page a:hover i{
-}
+
  .service-desc p{
      font-size: 16px;
 }
@@ -2218,12 +2216,7 @@
      font-weight: 700;
 }
 
- .service-icon a{
-     background: rgba(0, 0, 0, 0.9);
-     -webkit-transition: -webkit-transform ease-out 0.1s, background 0.2s;
-     -moz-transition: -moz-transform ease-out 0.1s, background 0.2s;
-     transition: transform ease-out 0.1s, background 0.2s;
-}
+
  .service-icon a{
      display: inline-block;
      font-size: 0px;
@@ -2237,6 +2230,10 @@
      position: relative;
      z-index: 1;
      color: #ffffff;
+     background: rgba(0, 0, 0, 0.9);
+     -webkit-transition: -webkit-transform ease-out 0.1s, background 0.2s;
+     -moz-transition: -moz-transform ease-out 0.1s, background 0.2s;
+     transition: transform ease-out 0.1s, background 0.2s;
 }
  .service-icon a::after {
      pointer-events: none;
@@ -2248,7 +2245,6 @@
      -webkit-box-sizing: content-box;
      -moz-box-sizing: content-box;
      box-sizing: content-box;
-     content: "";
      top: 0;
      left: 0;
      padding: 0;
@@ -2486,9 +2482,7 @@
      border-radius: 0px;
      color: #ffffff;
 }
- .quantity-box input{
-     width: 100%;
-}
+
  .price-box-bar{
      margin-bottom: 30px;
 }
@@ -2510,8 +2504,7 @@
      color: #ffffff;
      border: none;
 }
- .share-bar{
-}
+
  .share-bar a {
      background: #e4acaf;
      color: #ffffff;
@@ -2520,10 +2513,8 @@
      width: 34px;
      text-align: center;
 }
- .share-bar a {
-}
- .featured-products-box{
-}
+
+ 
  .featured-products-box .owl-nav{
      position: absolute;
      margin: 0 auto;
