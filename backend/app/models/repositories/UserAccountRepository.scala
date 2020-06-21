@@ -1,25 +1,27 @@
 package models.repositories
 
 import javax.inject.{Inject, Singleton}
-import models.UserAccount
+import models.{UserAccount, UserTable}
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
+import slick.lifted.TableQuery
 
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class UserAccountRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider, val usersRepository: UsersRepository)(implicit ec: ExecutionContext) {
+class UserAccountRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider)(implicit ec: ExecutionContext) {
   val dbConfig = dbConfigProvider.get[JdbcProfile]
+  val users = TableQuery[UserTable]
+  private val userAccounts = TableQuery[UserAccountTable]
 
 
   import dbConfig._
   import profile.api._
-  import usersRepository.UserTable
 
   class UserAccountTable(tag: Tag) extends Table[UserAccount](tag, "userAccount") {
 
 
-    def user = column[Long]("user")
+    def user = column[String]("user")
 
     def firstName = column[String]("firstName")
     def lastName = column[String]("latName")
@@ -39,8 +41,7 @@ class UserAccountRepository @Inject()(val dbConfigProvider: DatabaseConfigProvid
   }
 
 
-  private val userAccounts = TableQuery[UserAccountTable]
-  private val users = TableQuery[UserTable]
+
 
   def addUserInfo(user: UserAccount): Unit = db.run {
     userAccounts += user

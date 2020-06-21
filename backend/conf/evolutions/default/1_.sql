@@ -1,5 +1,48 @@
 # --- !Ups
 
+CREATE TABLE "AppUser" (
+	"Id"	TEXT NOT NULL UNIQUE,
+	"Email"	TEXT NOT NULL,
+	"FirstName"	TEXT,
+	"LastName"	TEXT,
+    "Role"	TEXT NOT NULL,
+	PRIMARY KEY("Id")
+);
+
+CREATE TABLE "LoginInfo" (
+	"Id"	TEXT NOT NULL UNIQUE,
+	"ProviderId"	TEXT NOT NULL,
+	"ProviderKey"	TEXT NOT NULL
+);
+
+CREATE TABLE "UserLoginInfo" (
+	"UserId"	TEXT NOT NULL,
+	"LoginInfoId"	TEXT NOT NULL,
+	FOREIGN KEY("UserId") REFERENCES "AppUser"("Id"),
+	FOREIGN KEY("LoginInfoId") REFERENCES "LoginInfo"("Id")
+);
+
+
+CREATE TABLE "PasswordInfo" (
+	"Hasher"	TEXT NOT NULL,
+	"Password"	TEXT NOT NULL,
+	"Salt"	TEXT,
+	"LoginInfoId"	TEXT NOT NULL,
+	FOREIGN KEY("LoginInfoId") REFERENCES "LoginInfo"("Id")
+);
+
+CREATE TABLE "OAuth2Info" (
+	"Id"	TEXT NOT NULL UNIQUE,
+	"AccessToken"	TEXT NOT NULL,
+	"TokenType"	TEXT,
+	"ExpiresIn"	INTEGER,
+	"RefreshToken"	TEXT,
+	"LoginInfoId"	TEXT NOT NULL,
+	PRIMARY KEY("Id"),
+	FOREIGN KEY("LoginInfoId") REFERENCES "LoginInfo"("Id")
+);
+
+
 CREATE TABLE "user" (
   "id"   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "name" VARCHAR NOT NULL,

@@ -5,13 +5,9 @@
 
 # An example controller showing a sample home page
 GET           /                                     controllers.HomeController.index
-
-
-GET           /userLogin                            controllers.AuthController.userLogin()
-POST          /userLoginHandle                      controllers.AuthController.userLoginHandle()
-GET           /userRegister                         controllers.AuthController.userRegister()
-POST          /userRegisterHandle                   controllers.AuthController.userRegisterHandle()
-
+POST          /auth/register                        controllers.SignUpController.submit
+POST          /auth/login                           controllers.SignInController.submit
+GET           /auth/provider/:provider              controllers.SocialController.authenticate(provider: String)
 
 GET           /userSettings                         controllers.SettingsController.userSettings()
 POST          /userSettingsHandle                   controllers.SettingsController.userSettings()
