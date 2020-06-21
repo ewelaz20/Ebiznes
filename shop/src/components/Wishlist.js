@@ -4,7 +4,6 @@ import '../css/style.css';
 import '../css/responsive.css';
 
 import { UserContext } from "./User-context";
-import { addToWishlist } from "./Wishlist-handler"
 import Notify from "./NotifyModal"
 
 export default class Wishlist extends Component {

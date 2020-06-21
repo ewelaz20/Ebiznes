@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 import '../css/bootstrap.min.css';
 import '../css/style.css';
@@ -7,19 +7,18 @@ import '../css/responsive.css';
 import '../css/custom.css';
 
 
-import Notify from "./searchModal";
-import { UserContext } from "./user-context";
-import Redirect from "react-router-dom/es/Redirect";
+import Notify from "./SearchModal";
+import {UserContext} from "./User-context";
 import {withRouter} from "react-router-dom";
 
 class Header extends Component {
 
-    
+
     static contextType = UserContext;
 
     constructor(props) {
-        super(props)
-     
+        super(props);
+
         this.state = {
             modal: false,
             searchExpanded: false
@@ -38,38 +37,12 @@ class Header extends Component {
     }
 
     switchState() {
-        this.setState({ searchExpanded: !this.state.searchExpanded })
-    }
-
-    expandSarch() {
-        console.log("EXPANDED " + this.state.searchExpanded);
-        if (this.state.searchExpanded === false) {
-            return (
-
-
-                <li class="search">
-                    <a href="#"><i onClick={() => this.switchState()} class="fa fa-search" aria-hidden="true"></i></a>
-                </li>
-
-            )
-        } else {
-            return (
-
-                <li class="search ">
-                    <a href="#"><i onClick={() => this.switchState()} class="fa fa-search" aria-hidden="true"></i></a>
-                    <div class="input[type='text']">
-                        <input type="text" placeholder="" />
-                        <input type="button" value="Search" />
-                    </div>
-                </li>
-
-            )
-        }
+        this.setState({searchExpanded: !this.state.searchExpanded})
     }
 
 
     modalOpen(e) {
-        this.setState({ modal: true });
+        this.setState({modal: true});
         e.preventDefault();
     }
 
@@ -81,41 +54,45 @@ class Header extends Component {
     }
 
 
-    userHandle(){
-        if (this.context.user!==null){
+    userHandle() {
+        if (this.context.user !== null) {
             this.context.logout()
-        } else{
+        } else {
             console.log("in else");
             this.props.history.push("/main");
         }
     }
-    
-    isLogged(){
-        return this.context.user!==null
+
+    isLogged() {
+        return this.context.user !== null
     }
 
-    userLogged(){
-        if (this.isLogged()){
-            return(
-            <li className="search"><a href="/user"><i className="fa fa-user-circle "></i></a></li>
-             ) }
-        else{
-            return(
-            <li className="search"><a href="/login"><i className="fa fa-user-circle "></i></a></li>
-             ) }
+    userLogged() {
+        if (this.isLogged()) {
+            return (
+                <li className="search"><a href="/user"><i className="fa fa-user-circle "></i></a></li>
+            )
+        }
+        else {
+            return (
+                <li className="search"><a href="/login"><i className="fa fa-user-circle "></i></a></li>
+            )
+        }
     }
 
-    logoutButton(){
+    logoutButton() {
 
-        if (this.isLogged()){
-            return(
-            <li className="search"><a  href="" onClick={()=>this.userHandle()}><i className="fa fa-power-off "></i></a></li>
-    
-            )}
-       
-            
+        if (this.isLogged()) {
+            return (
+                <li className="search"><a href="" onClick={() => this.userHandle()}><i className="fa fa-power-off "></i></a>
+                </li>
+
+            )
+        }
+
+
     }
-    
+
 
     render() {
         return (
@@ -129,14 +106,22 @@ class Header extends Component {
 
                             <div className="collapse navbar-collapse" id="navbar-menu">
                                 <ul className="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                                    <li className="nav-item"><a className="nav-link" href="/categories/blazers">Blazers</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="/categories/dresses">Dresses</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="/categories/trousers">Trousers</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="/categories/skirts">Skirts</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="/categories/coats">Coats</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="/categories/blouses">Blouses & Skirts</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="/categories/accessories">Accessories</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="/categories/shoes">Shoes</a></li>
+                                    <li className="nav-item"><a className="nav-link"
+                                                                href="/categories/blazers">Blazers</a></li>
+                                    <li className="nav-item"><a className="nav-link"
+                                                                href="/categories/dresses">Dresses</a></li>
+                                    <li className="nav-item"><a className="nav-link"
+                                                                href="/categories/trousers">Trousers</a></li>
+                                    <li className="nav-item"><a className="nav-link"
+                                                                href="/categories/skirts">Skirts</a></li>
+                                    <li className="nav-item"><a className="nav-link" href="/categories/coats">Coats</a>
+                                    </li>
+                                    <li className="nav-item"><a className="nav-link" href="/categories/blouses">Blouses
+                                        & Skirts</a></li>
+                                    <li className="nav-item"><a className="nav-link"
+                                                                href="/categories/accessories">Accessories</a></li>
+                                    <li className="nav-item"><a className="nav-link" href="/categories/shoes">Shoes</a>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -145,42 +130,21 @@ class Header extends Component {
                                 <ul>
 
                                     <li class="search">
-                                        <a href=""><i onClick={e => this.modalOpen(e)} class="fa fa-search" aria-hidden="true"></i></a>
+                                        <a href=""><i onClick={e => this.modalOpen(e)} class="fa fa-search"
+                                                      aria-hidden="true"></i></a>
                                     </li>
-                                    <Notify show={this.state.modal} handleClose={e => this.modalClose(e)} >
+                                    <Notify show={this.state.modal} handleClose={e => this.modalClose(e)}>
                                     </Notify>
 
+                                    {this.userLogged()}
 
-                                    {/* {this.expandSarch()} */}
-
-
-
-                                    {/* <li className="search"><a href="#"><i className="fa fa-search "></i></a>
-
-                                        <div class="top-search">
-                                            <div class="container">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Search"/>
-                                                    <span class="input-group-addon close-search"><i
-                                                        class="fa fa-times"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li> */}
-                                    {/* <li className="search"><a href="/user"><i className="fa fa-user-circle "></i></a></li> */}
-
-                                       {this.userLogged()} 
-                                    {/*<li className="search"><a href="/user"><i className="fa fa-facebook-f"></i></a>*/}
-
-                                    {/*</li>*/}
                                     <li className="fav"><a href="/wishlist"><i className="fa fa-heart"></i></a></li>
                                     <li className="side-menu">
                                         <a href="/cart">
                                             <i className="fa fa-shopping-bag"></i>
-                                            <span className="badge" >{this.getNumberInCart()}</span>                                        </a>
+                                            <span className="badge">{this.getNumberInCart()}</span> </a>
                                     </li>
-                                   {this.logoutButton()}
+                                    {this.logoutButton()}
 
                                 </ul>
                             </div>
@@ -195,4 +159,5 @@ class Header extends Component {
         );
     }
 }
+
 export default withRouter(Header);

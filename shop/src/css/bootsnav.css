@@ -541,7 +541,6 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
 		border: none;
     }
 
-    nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li a:hover,
     nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li a:hover{
         background-color: transparent;
 		color: #b0b435;
@@ -896,6 +895,9 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
         -webkit-box-shadow: 0px 0px 0px;
         -o-box-shadow: 0px 0px 0px;
         box-shadow: 0px 0px 0px;
+        padding-left: 0;
+        float: none;
+        margin-bottom: 0;
     }
     
     nav.bootsnav.navbar-sidebar ul.nav .megamenu-content .col-menu{
@@ -906,11 +908,6 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
         margin-bottom: 15px;
     }
     
-    nav.bootsnav.navbar-sidebar ul.nav li.dropdown ul.dropdown-menu{
-        padding-left: 0;
-        float: none;
-        margin-bottom: 0;
-    }
 
     nav.bootsnav.navbar-sidebar ul.nav li.dropdown ul.dropdown-menu li a{
         padding:  5px 15px;
@@ -943,6 +940,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
         padding: 0;
         margin: 0;
         width: 100%;
+        border: none;
     }
 
     nav.bootsnav.navbar-sidebar .dropdown .megamenu-content .col-menu .title{
@@ -965,9 +963,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
         content: "\f107";
     }
     
-    nav.bootsnav.navbar-sidebar .dropdown .megamenu-content .col-menu{
-        border: none;
-    }
+
     
     nav.bootsnav.navbar-sidebar .dropdown .megamenu-content .col-menu .content{
         padding: 0 0 0 15px;
@@ -1260,10 +1256,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     
     /* Navbar Sidebar
     =================================*/
-    nav.navbar.bootsnav.navbar-sidebar .share{
-        padding: 30px 15px;
-        margin-bottom: 0;
-    }
+
     
     /* Tabs
     =================================*/ 
@@ -1314,11 +1307,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
         left: 0;
     }
 
-    nav.navbar.bootsnav.navbar-mobile ul.nav{
-        width: 293px;
-        padding-right: 0;
-        padding-left: 15px;
-    }
+
     
     nav.navbar.bootsnav.navbar-mobile ul.nav > li > a{
         padding: 15px 15px;
@@ -1415,6 +1404,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     =================================*/ 
     nav.navbar.bootsnav.navbar-sidebar .share{
         padding: 30px 15px !important;
+        margin-bottom: 0;
     }
     
     /* Navbar Sidebar
@@ -1442,11 +1432,12 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     
     nav.navbar.bootsnav.navbar-mobile ul.nav{
         margin-left: -15px;
-    }
-
-    nav.navbar.bootsnav.navbar-mobile ul.nav{
+        width: 293px;
+        padding-right: 0;
+        padding-left: 15px;
         border-top: solid 1px #fff;
     }
+
 
     
     li.close-full-menu{
