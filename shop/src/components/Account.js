@@ -5,7 +5,7 @@ import '../css/style.css';
 import '../css/responsive.css';
 import '../css/newsletter.css';
 import '../css/custom.css';
-import {UserContext} from "./user-context";
+import {UserContext} from "./User-context";
 import Redirect from "react-router-dom/es/Redirect";
 
 

@@ -4,11 +4,11 @@ import './App.css';
 import './css/search.css';
 
 
-import Newsletter from "./components/newsletter";
+import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import Item from "./components/Item"
-import {UserContext} from "./components/user-context";
+import {UserContext} from "./components/User-context";
 
 class CategoryPage extends Component {
 

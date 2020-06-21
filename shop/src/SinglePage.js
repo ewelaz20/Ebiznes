@@ -4,7 +4,7 @@ import './App.css';
 import './css/search.css';
 
 
-import Newsletter from "./components/newsletter";
+import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer"
 import {useParams} from "react-router-dom"
 import Header from "./components/Header"

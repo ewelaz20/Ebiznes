@@ -8,7 +8,7 @@ import '../css/custom.css';
 import '../css/newsletter.css';
 
 import Notify from './CheckoutModal'
-import { UserContext } from "./user-context";
+import { UserContext } from "./User-context";
 
 export default class Checkout extends Component {
 

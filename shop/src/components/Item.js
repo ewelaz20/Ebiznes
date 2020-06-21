@@ -6,9 +6,9 @@ import '../css/custom.css';
 import '../css/newsletter.css';
 
 
-import { addToWishlist } from "./wishlist-handler";
+import { addToWishlist } from "./Wishlist-handler";
 import Notify from "./WishlistModal";
-import { UserContext } from "./user-context";
+import { UserContext } from "./User-context";
 
 class Item extends Component {
 

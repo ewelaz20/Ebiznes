@@ -5,16 +5,16 @@ import './css/search.css';
 
 
 
-import Newsletter from "./components/newsletter";
+import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-import User from "./components/account"
+import Wishlist from "./components/Wishlist"
 
-function UserPage() {
+function WishlistPage() {
   return (
     <div className="App">
       <Header></Header>
-      <User></User>
+    <Wishlist/>
 
       <Newsletter></Newsletter>
       <Footer></Footer>
@@ -23,4 +23,4 @@ function UserPage() {
   );
 }
 
-export default UserPage;
+export default WishlistPage;

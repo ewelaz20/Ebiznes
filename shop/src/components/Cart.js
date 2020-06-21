@@ -5,7 +5,7 @@ import '../css/style.css';
 //import '../css/order.css';
 import '../css/responsive.css';
 
-import {UserContext} from "./user-context";
+import {UserContext} from "./User-context";
 
 export default class Cart extends Component {
 

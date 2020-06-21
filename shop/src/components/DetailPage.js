@@ -6,8 +6,8 @@ import '../css/custom.css';
 import '../css/newsletter.css';
 
 import Notify from "./NotifyModal"
-import { addToWishlist } from "./wishlist-handler"
-import {UserContext} from "./user-context";
+import { addToWishlist } from "./Wishlist-handler"
+import {UserContext} from "./User-context";
 
 
 export default class DetailPage extends Component {

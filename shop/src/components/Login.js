@@ -3,7 +3,7 @@ import '../css/newsletter.css';
 import '../css/custom.css';
 
 import {Redirect} from "react-router-dom";
-import {UserContext} from "./user-context";
+import {UserContext} from "./User-context";
 
 export default class Login extends Component {
     static contextType = UserContext;

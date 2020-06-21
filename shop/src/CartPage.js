@@ -8,7 +8,7 @@ import './css/custom.css';
 
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-import Cart from "./components/cart"
+import Cart from "./components/Cart"
 
 function CartPage() {
     return (

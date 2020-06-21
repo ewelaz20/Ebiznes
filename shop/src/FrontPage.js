@@ -5,12 +5,12 @@ import './App.css';
 import './css/search.css';
 
 
-import Carousel from "./components/carousel";
-import Newsletter from "./components/newsletter";
+import Carousel from "./components/Carousel";
+import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import Item from "./components/Item"
-import { UserContext } from "./components/user-context";
+import { UserContext } from "./components/User-context";
 
 
 class FrontPage extends Component {

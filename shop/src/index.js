@@ -2,16 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.css";
-import LoginPage from "./login-page";
-import WishlistPage from "./wishlist-page";
+import LoginPage from "./LoginPage";
+import WishlistPage from "./WishlistPage";
 import Checkout from "./CheckoutPage"
-import CartP from "./cart-page"
+import CartP from "./CartPage"
 import SinglePage from "./SinglePage"
 import CreateAccountPage from "./CreateAccountPage"
 import CategoryPage from "./CategoryPage"
-import { UserContext } from "./components/user-context";
+import { UserContext } from "./components/User-context";
 import FrontPage from "./FrontPage.js"
-import User from "./user-page"
+import User from "./UserPage"
 
 import * as serviceWorker from "./serviceWorker";
 import Redirect from "react-router-dom/es/Redirect";

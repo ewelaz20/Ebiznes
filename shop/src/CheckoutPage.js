@@ -6,7 +6,7 @@ import './css/search.css';
 
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-import Checkout from "./components/checkout"
+import Checkout from "./components/Checkout"
 
 function CheckoutPage() {
     return (
