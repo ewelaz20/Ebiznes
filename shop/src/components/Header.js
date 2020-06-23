@@ -52,13 +52,10 @@ class Header extends Component {
             modal: false
         });
     }
-
-
     userHandle() {
         if (this.context.user !== null) {
             this.context.logout()
         } else {
-            console.log("in else");
             this.props.history.push("/main");
         }
     }
@@ -81,7 +78,6 @@ class Header extends Component {
     }
 
     logoutButton() {
-
         if (this.isLogged()) {
             return (
                 <li className="search"><a href="" onClick={() => this.userHandle()}><i className="fa fa-power-off "></i></a>
@@ -92,7 +88,6 @@ class Header extends Component {
 
 
     }
-
 
     render() {
         return (

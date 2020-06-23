@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import '../css/bootstrap.min.css';
 import '../css/style.css';
 import '../css/responsive.css';
 
-import { UserContext } from "./User-context";
+import {UserContext} from "./User-context";
 import Notify from "./NotifyModal"
 
 export default class Wishlist extends Component {
@@ -23,10 +23,16 @@ export default class Wishlist extends Component {
 
     componentDidMount() {
         console.log("USER   " + this.context.user);
-        fetch("http://localhost:9000/fav/" + this.context.user, { mode: "cors", method: "GET" })
+        fetch("http://localhost:9000/fav", {
+            mode: "cors", method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Auth-Token': this.context.user
+            }
+        })
             .then(response => response.json())
             .then(json =>
-                this.setState({ favourites: json })
+                this.setState({favourites: json})
             )
 
 
@@ -35,15 +41,21 @@ export default class Wishlist extends Component {
     removeFromWishList(id) {
         console.log("removing");
         let fav = [...this.state.favourites];
-        this.setState({ favourites: fav.filter(item => item.id !== id) })
-        fetch("http://localhost:9000/fav/" + this.context.user + "/" + id, {
-            method: "DELETE"
+        this.setState({favourites: fav.filter(item => item.id !== id)});
+        fetch("http://localhost:9000/fav/" + id, {
+            method: "DELETE",
+            mode: "cors",
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Auth-Token': this.context.user
+            }
+
         }).catch(err => console.log(err))
 
     }
 
     modalOpen() {
-        this.setState({ modal: true });
+        this.setState({modal: true});
     }
 
     modalClose() {
@@ -69,16 +81,16 @@ export default class Wishlist extends Component {
     addToCart(product) {
         if (product.quantity > 0) {
             return (<td className="add-pr" onClick={() => this.context.pushToCart(product)}>
-                <a href="" className="btn hvr-hover" >Add to Cart</a>
+                <a href="" className="btn hvr-hover">Add to Cart</a>
             </td>)
         } else {
             return (
-                
-                    <td className="add-pr" onClick={e => this.modalOpen(e)}>
-                        <a href=""className="btn hvr-hover" > &nbsp;&nbsp;&nbsp;&nbsp; Notify &nbsp;&nbsp;&nbsp;&nbsp;</a>
-                    </td>
-                   
-                )
+
+                <td className="add-pr" onClick={e => this.modalOpen(e)}>
+                    <a href="" className="btn hvr-hover"> &nbsp;&nbsp;&nbsp;&nbsp; Notify &nbsp;&nbsp;&nbsp;&nbsp;</a>
+                </td>
+
+            )
         }
     }
 
@@ -89,12 +101,12 @@ export default class Wishlist extends Component {
             <tr>
                 <td className="thumbnail-img">
                     <a href={"/product/" + product.id}>
-                    <img className="img-fluid" src={product.image} alt="" />
+                        <img className="img-fluid" src={product.image} alt=""/>
                     </a>
                 </td>
                 <td className="name-pr">
                     <a href={"/product/" + product.id}>
-                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; {product.name}
+                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; {product.name}
                     </a>
                 </td>
                 <td className="price-pr">
@@ -102,8 +114,9 @@ export default class Wishlist extends Component {
                 </td>
                 {this.stock(product)}
                 {this.addToCart(product)}
-                <Notify show={this.state.modal} handleClose={e => this.modalClose(e)} id={product.id} name={product.name}></Notify>
-                <td className="remove-pr" >
+                <Notify show={this.state.modal} handleClose={e => this.modalClose(e)} id={product.id}
+                        name={product.name}></Notify>
+                <td className="remove-pr">
                     <a onClick={() => this.removeFromWishList(product.id)}>
                         <i className="fas fa-times"></i>
                     </a>
@@ -121,25 +134,25 @@ export default class Wishlist extends Component {
 
                         <div class="col-lg-12">
                             <div class="title-all text-center">
-                                <hr />
+                                <hr/>
                                 <h1>Favourites</h1>
-                                <hr />
+                                <hr/>
 
                             </div>
                             <div class="table-main table-responsive">
                                 <table class="table">
                                     <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th></th>
-                                            <th>Price</th>
-                                            <th>Stock</th>
-                                            <th>Add Item</th>
-                                            <th>Remove</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th></th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                        <th>Add Item</th>
+                                        <th>Remove</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {this.state.favourites.map(this.singleWishlistProduct)}
+                                    {this.state.favourites.map(this.singleWishlistProduct)}
                                     </tbody>
                                 </table>
                             </div>

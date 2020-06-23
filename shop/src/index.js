@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./index.css";
+// import "./index.css";
 import LoginPage from "./LoginPage";
 import WishlistPage from "./WishlistPage";
 import Checkout from "./CheckoutPage"
@@ -14,8 +14,10 @@ import FrontPage from "./FrontPage.js"
 import User from "./UserPage"
 
 import * as serviceWorker from "./serviceWorker";
-import Redirect from "react-router-dom/es/Redirect";
+import Redirect from "react-router-dom/Redirect";
 import 'font-awesome/css/font-awesome.css';
+import AuthRoute from "./components/AuthRoute"
+import Authenticator from "./Authenticator";
 
 class App extends React.Component {
     constructor(props) {
@@ -33,7 +35,6 @@ class App extends React.Component {
     }
 
     setUser = (usr) => {
-        console.log("set function launched");
         localStorage.setItem("user", usr);
         this.setState(({
             user: usr
@@ -54,8 +55,6 @@ class App extends React.Component {
    
 
     pushToCart = (product) => {
-        console.log("got");
-        console.log(product);
         let index = this.state.cart.findIndex(val => val.id === product.id);
         if (index === -1) {
             this.setState(({
@@ -82,21 +81,16 @@ class App extends React.Component {
                 <Router>
                     <Switch>
                         <Route exact path="/main" component={FrontPage} />
-
                         <Route path="/categories/:id" component={CategoryPage} />
                         <Route path="/product/:id" component={SinglePage} />
                         <Route path="/register" component={CreateAccountPage} />
                         <Route path="/cart" component={CartP} />
-                        <Route path="/checkout" component={Checkout} />
-                        <Route path="/user" component={User} />
-                        <Route path="/wishList">
-                            <WishlistPage />
-                        </Route>
+                        <Route path={"/auth/successful/:token"} component={Authenticator}/>
+                        <AuthRoute component={() => <Checkout />} path="/checkout" />
+                        <AuthRoute component={() => <User />} path="/user" />
+                        <AuthRoute component={() => <WishlistPage />} path="/wishList" />
                         <Route path="/login" component={LoginPage} />
-                       
-                        <Route path="/">
-
-
+                        <Route path="/" component={FrontPage}>
                         </Route>
                     </Switch>
                 </Router>

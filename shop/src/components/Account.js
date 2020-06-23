@@ -17,7 +17,6 @@ export default class Account extends Component {
         this.state = {
             edit: false,
             user: {
-                user: "",
                 firstName: "",
                 lastName: "",
                 address: "",
@@ -42,7 +41,8 @@ export default class Account extends Component {
             mode: 'cors',
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-Auth-Token' : this.context.user
             },
             body: JSON.stringify(this.state.user)
         }).catch(err => console.log("Error while user page " + err))
@@ -53,13 +53,6 @@ export default class Account extends Component {
         user[event.target.name] = event.target.value;
 
         this.setState({
-
-            firstName: event.target.firstName,
-            lastName: event.target.lastName,
-            address: event.target.address,
-            zip: event.target.zip,
-            phone: event.target.phone,
-            email: event.target.email,
             user: user
         });
     }
@@ -111,11 +104,6 @@ export default class Account extends Component {
 
 
     render() {
-
-
-        if (this.context.user == null) {
-            return <Redirect to={"/login"}/>
-        }
         return (
             <div class="container orderContainer">
                 <div id="order" class="ajax_reload">

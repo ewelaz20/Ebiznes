@@ -40,6 +40,6 @@ EXPOSE 8000
 EXPOSE 5000
 EXPOSE 8888
 
-VOLUME /home/ezieblinska/projekt
+COPY ./backend /backend
+COPY ./shop /shop
 
-WORKDIR /home/ezieblinska/projekt

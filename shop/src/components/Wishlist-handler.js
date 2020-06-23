@@ -1,10 +1,11 @@
 export function addToWishlist(user, product) {
-    let fav = {"user":user,"product":product};
-    console.log("SENDING" +JSON.stringify(fav));
-    fetch("http://localhost:9000/fav/"+user+"/"+product, {
+    fetch("http://localhost:9000/fav/"+product, {
         method: "POST",
         mode:"cors",
-        body: JSON.stringify(fav)
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Auth-Token' : user
+        }
     }).then(response => console.log("response"  + response));
 
 }

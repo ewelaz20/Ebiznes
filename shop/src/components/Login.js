@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import '../css/newsletter.css';
 import '../css/custom.css';
-
-import {Redirect} from "react-router-dom";
+import '../css/social.css'
+import {Redirect, withRouter} from "react-router-dom";
 import {UserContext} from "./User-context";
 
-export default class Login extends Component {
+ class Login extends Component {
     static contextType = UserContext;
 
     constructor(props) {
@@ -19,23 +19,28 @@ export default class Login extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+        this.provider = this.provider.bind(this);
+
     }
 
     handleLoginSubmit() {
-        console.log({mail: this.state.mail, password: this.state.password});
-        fetch('http://localhost:9000/login', {
-            mode: 'cors',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({mail: this.state.mail, password: this.state.password})
-        }).catch(err => console.log("Error while authenticating " + err))
-            .then(response => {
-                    response.clone().json().then(value => this.context.setUser(value.id))
-
-                }
-            );
+        fetch("http://localhost:9000/auth/login",
+            {
+                mode: 'cors',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: this.state.mail,
+                    password: this.state.password
+                })
+            })
+            .then(result => result.json())
+            .then(data => {
+                this.context.setUser(data.token);
+                this.props.history.push("/")
+            })
 
 
     }
@@ -44,9 +49,12 @@ export default class Login extends Component {
         this.setState({[event.target.name]: event.target.value})
     }
 
+    provider(providerName) {
+        window.location = 'http://localhost:9000/auth/provider/' + providerName;
+    }
+
     render() {
         if (this.context.user !== null) {
-            console.log("USEEEEEEEER" + this.context.user);
             return <Redirect to='/main'/>
         }
 
@@ -94,17 +102,19 @@ export default class Login extends Component {
                                                 Register here!</a><br/>
                                         </div>
                                         <div class="submit_row_submit submit_row_submit-fb">
-                                            {/* <a id="facebook-button" className="btn  btn-social btn-facebook">
-                                            <i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
-                                            </a>
-                                            <a id="google-button" className="btn  btn-social ">
-                                            <i className="fa fa-google fa-3x" aria-hidden="true"></i>
-                                            </a> */}
-                                           
+
 
                                             <input class="order_button br next trans_bg"
                                                    onClick={() => this.handleLoginSubmit()}
                                                    value="Sign in "/>
+                                            <div className="content">
+                                                <a onClick={() => this.provider("facebook")}> <i
+                                                    className="fa fa-facebook-official fa-3x"
+                                                    aria-hidden="true"></i></a>
+                                                <a onClick={() => this.provider("google")}><i
+                                                    className="fa fa-google-plus-square fa-3x"
+                                                    aria-hidden="true"></i></a>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -120,5 +130,6 @@ export default class Login extends Component {
     }
 
 }
+export default withRouter(Login)
 
 

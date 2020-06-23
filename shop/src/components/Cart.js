@@ -42,7 +42,7 @@ export default class Cart extends Component {
         prod["selectedAmount"] = event.target.value;
         productscpy[index] = prod;
         this.setState({products: productscpy});
-        this.context.pushToCart(productscpy)
+        this.context.pushToCart(prod)
     }
 
 
