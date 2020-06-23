@@ -88,9 +88,9 @@ POST          /contact/publish                      controllers.ContactControlle
 GET           /about                                controllers.AboutController.getAbout()
 
 
-GET           /fav/:userId                          controllers.FavouriteController.getWishlistForUser(userId:Long)
-POST          /fav/:userId/:productId               controllers.FavouriteController.addFav(userId:Long,productId:Long)
-DELETE        /fav/:userId/:productId               controllers.FavouriteController.deleteFav(userId:Long,productId:Long)
+GET           /fav                                 controllers.FavouriteController.getWishlistForUser()
+POST          /fav/:productId                        controllers.FavouriteController.addFav(productId:Long)
+DELETE        /fav/:productId                        controllers.FavouriteController.deleteFav(productId:Long)
 
 
 GET           /paymentList                          controllers.PaymentController.listOfPayments()

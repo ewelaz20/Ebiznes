@@ -1,33 +1,37 @@
 package controllers
 
+import com.mohiva.play.silhouette.api.Silhouette
 import javax.inject._
 import models.Favourite
 import models.repositories.WishListRepository
 import play.api._
 import play.api.libs.json.Json
 import play.api.mvc._
+import auth.DefaultEnv
 
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
 
 @Singleton
-class FavouriteController @Inject()(val controllerComponents: ControllerComponents, wishListRepository: WishListRepository)(implicit ec: ExecutionContext) extends BaseController {
+class FavouriteController @Inject()(cc: MessagesControllerComponents,
+                                    silhouette: Silhouette[DefaultEnv],
+                                    val controllerComponents: ControllerComponents,
+                                    wishListRepository: WishListRepository)(implicit ec: ExecutionContext) extends BaseController {
 
-  def getWishlistForUser(userId: Long) = Action.async { implicit request: Request[AnyContent] =>
-    val wishlist = wishListRepository.getWishlistForUser(userId)
-    wishlist.map(body => Ok(Json.toJson(body)).withHeaders("Access-Control-Allow-Origin" -> "http://localhost:3000")
+  def getWishlistForUser() = silhouette.SecuredAction.async { implicit request =>
+    val wishlist = wishListRepository.getWishlistForUser(request.identity.id)
+    wishlist.map(body => Ok(Json.toJson(body))
     )
   }
 
-  def addFav(userId: Long, productId: Long) = Action { implicit request: Request[AnyContent] =>
-    val fav = Favourite(userId, productId);
-    println("ADDING " + fav)
+  def addFav(productId: Long) = silhouette.SecuredAction.async { implicit request =>
+    val fav = Favourite(request.identity.id, productId);
     wishListRepository.addFavourite(fav)
-    Ok(Json.toJson(fav))
+    Future(Ok(Json.toJson(fav)))
   }
 
-  def deleteFav(userId: Long, productId: Long) = Action.async { implicit request: Request[AnyContent] =>
-    wishListRepository.deleteFavourite(userId, productId).map(_ => Ok)
+  def deleteFav(productId: Long) = silhouette.SecuredAction.async { implicit request =>
+    wishListRepository.deleteFavourite(request.identity.id, productId).map(_ => Ok)
   }
 
 }

@@ -25,7 +25,7 @@ class WishListRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
 
 
   private class Favourites(tag: Tag) extends Table[Favourite](tag, "favourites") {
-    def user = column[Long]("user")
+    def user = column[String]("user")
 
     def userFk = foreignKey("user_fk", product, products)(_.id)
 
@@ -36,7 +36,7 @@ class WishListRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
     def * = (user, product) <> ((Favourite.apply _).tupled, Favourite.unapply)
   }
 
-  def getWishlistForUser(userId: Long): Future[Seq[Product]] = {
+  def getWishlistForUser(userId: String): Future[Seq[Product]] = {
     val query = for {
       favourite <- favourites if favourite.user === userId
       product <- products if favourite.product === product.id
@@ -48,7 +48,7 @@ class WishListRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
     favourites += favourite
   }
 
-  def deleteFavourite(userId: Long, productId: Long): Future[Unit] = db.run {
+  def deleteFavourite(userId: String, productId: Long): Future[Unit] = db.run {
     favourites.filter(fav => fav.user === userId && fav.product === productId).delete.map(_ => ())
   }
 }

@@ -96,7 +96,7 @@ CREATE TABLE "product" (
 
 
 CREATE TABLE "favourites" (
-  "user" INTEGER NOT NULL,
+  "user" VARCHAR NOT NULL,
   "product" INTEGER NOT NULL,
   FOREIGN KEY (user) references user (id),
   FOREIGN KEY (product) references product (id)
@@ -111,15 +111,14 @@ CREATE TABLE "sizes" (
 
 
 CREATE TABLE "userAccount" (
- "user" INTEGER NOT NULL,
+ "user" VARCHAR NOT NULL,
    "firstName"   VARCHAR NOT NULL,
   "lastName" VARCHAR NOT NULL,
   "address" VARCHAR NOT NULL,
   "zip" VARCHAR NOT NULL,
   "phone" VARCHAR NOT NULL,
-  "email" VARCHAR NOT NULL,
+  "email" VARCHAR NOT NULL
 
-    FOREIGN KEY (user) references user (id)
 );
 
 # --- !Downs

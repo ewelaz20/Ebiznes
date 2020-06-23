@@ -11,7 +11,6 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class UserAccountRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider)(implicit ec: ExecutionContext) {
   val dbConfig = dbConfigProvider.get[JdbcProfile]
-  val users = TableQuery[UserTable]
   private val userAccounts = TableQuery[UserAccountTable]
 
 
@@ -33,9 +32,6 @@ class UserAccountRepository @Inject()(val dbConfigProvider: DatabaseConfigProvid
     def phone = column[String]("phone")
 
     def email = column[String]("email")
-
-
-    def userFk = foreignKey("user_fk", user, users)(_.id)
 
     def * = (user, firstName, lastName, address, zip, phone, email) <> ((UserAccount.apply _).tupled, UserAccount.unapply)
   }
